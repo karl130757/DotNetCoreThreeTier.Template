@@ -7,39 +7,44 @@ A clean and extensible **Three-Tier Architecture template** built with **.NET Co
 ## 🏗️ Architecture Diagram
 
 ```
-       ┌───────────────────┐
-       │      WebApis      │
-       │   (Controllers)   │
-       │    Program.cs     │
-       └─────────┬─────────┘
-                 │
-                 ▼
-       ┌───────────────────┐
-       │    Application    │
-       │  (Services / DI)  │
-       └─────────┬─────────┘
-                 │
-                 ▼
-       ┌───────────────────┐
-       │  Infrastructure   │
-       │-------------------│
-       │ - SQL DbContext   │
-       │ - MongoDbContext  │
-       │ - Repositories    │
-       └─────────┬─────────┘
-                 │
-                 ▼
-       ┌───────────────────┐
-       │       Core        │
-       │ Entities / DTOs   │
-       │ Contracts         │
-       └───────────────────┘
+                   +-------------------+
+                   |      WebApis      |
+                   |  (Controllers)    |
+                   |  Program.cs       |
+                   +-------------------+
+                             |
+                             v
+                   +-------------------+
+                   |   Application     |
+                   | (Services / DI)   |
+                   +-------------------+
+                             |
+             +---------------+----------------+
+             |                                |
+             v                                v
+  +---------------------+           +---------------------+
+  |    SQL Persistence  |           |  MongoDB Persistence|
+  |---------------------|           |---------------------|
+  | SqlDbContext        |           | MongoDbContext      |
+  | UserRepository      |           | UserRepository      |
+  | Migrations          |           | Collections         |
+  +---------------------+           +---------------------+
+             |                                |
+             +---------------+----------------+
+                             v
+                       +-------------------+
+                       |       Core        |
+                       | Entities / DTOs   |
+                       | Contracts         |
+                       +-------------------+
 ```
 
-**Key point:**  
-- Switching between **SQL and MongoDB** happens only in the **Infrastructure layer DI registration**.  
-- **WebApi** and **Application** layers remain unchanged.  
-- Application services and controllers depend only on **Core contracts**, not the actual database.
+**Explanation:**  
+- **WebApis** handles HTTP requests.  
+- **Application** layer contains services injected into controllers.  
+- **Core** defines contracts, entities, and DTOs.  
+- **Infrastructure** implements repositories for either SQL or MongoDB.  
+- Switching persistence only requires changing DI in the infrastructure layer.
 
 ---
 
