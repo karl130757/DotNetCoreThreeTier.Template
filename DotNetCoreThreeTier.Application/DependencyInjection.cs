@@ -1,5 +1,5 @@
 ﻿
-using DotNetCoreThreeTier.Application.User;
+using DotNetCoreThreeTier.Application.Users;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DotNetCoreThreeTier.Application

@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +20,12 @@ namespace DotNetCoreThreeTier.Infrastructure.Persistence.SQL
             _dbSet = _context.Set<T>();
         }
 
-        public async Task<T?> GetByIdAsync(string id) =>
+        public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
+        {
+            return _dbSet.Where(predicate).ToList();
+        }
+
+        public async Task<T?> GetByIdAsync(int id) =>
             await _dbSet.FindAsync(id);
 
         public async Task<IEnumerable<T>> GetAllAsync() =>
@@ -37,7 +43,7 @@ namespace DotNetCoreThreeTier.Infrastructure.Persistence.SQL
             await _context.SaveChangesAsync();
         }
 
-        public async Task DeleteAsync(string id)
+        public async Task DeleteAsync(int id)
         {
             var entity = await GetByIdAsync(id);
             if (entity != null)

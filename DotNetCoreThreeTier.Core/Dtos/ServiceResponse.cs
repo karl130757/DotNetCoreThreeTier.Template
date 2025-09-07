@@ -2,5 +2,5 @@
 
 namespace DotNetCoreThreeTier.Core.Dtos
 {
-    public record HandlerResponse(bool success, string? message, object? data);
+    public record ServiceResponse(bool success, string? message, object? data);
 }
