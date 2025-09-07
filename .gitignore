@@ -1,0 +1,91 @@
+## Ignore Visual Studio 2022 temp files, build results, and user settings
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Uncomment if you have tasks that create the 'out' folder
+# out/
+
+# Roslyn cache
+*.ide/
+
+# MSTest test results
+[Tt]est[Rr]esult*/  
+[Bb]uild[Ll]og.*
+
+# NUNIT
+*.VisualState.xml
+TestResult.xml
+
+# Visual Studio 2022
+.vs/
+Generated\ Files/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Others
+*.dbmdl
+*.bak
+*.backup
+*.orig
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+# The packages folder can be ignored because of Package Restore
+**/packages/*
+!**/packages/build/
+!**/packages/repositories.config
+
+# .NET Core / SDK-style projects
+project.lock.json
+project.assets.json
+artifacts/
+*.deps.json
+
+# Tye
+.tye/
+
+# Local history for Visual Studio
+.localhistory/
+
+# Logs and backups
+*.log
+*.tlog
+
+# Windows specific
+Thumbs.db
+ehthumbs.db
+
+# Mac files (in case you're on a shared repo)
+.DS_Store
+
+#Ignore tracking development configs
+**/NetCoreThreeTier.WebApis/appsettings.Development.json

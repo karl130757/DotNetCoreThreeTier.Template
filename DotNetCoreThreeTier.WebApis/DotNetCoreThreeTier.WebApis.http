@@ -1,0 +1,6 @@
+@DotNetCoreThreeTier.WebApis_HostAddress = http://localhost:5251
+
+GET {{DotNetCoreThreeTier.WebApis_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
