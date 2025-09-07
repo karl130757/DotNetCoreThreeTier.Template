@@ -8,24 +8,24 @@ A clean and extensible **Three-Tier Architecture template** built with **.NET Co
 
 ```
        ┌───────────────────┐
-       │      WebApis       │
-       │  (Controllers)     │
-       │  Program.cs        │
+       │      WebApis      │
+       │   (Controllers)   │
+       │    Program.cs     │
        └─────────┬─────────┘
                  │
                  ▼
        ┌───────────────────┐
-       │   Application      │
-       │ (Services / DI)   │
+       │    Application    │
+       │  (Services / DI)  │
        └─────────┬─────────┘
                  │
                  ▼
        ┌───────────────────┐
-       │  Infrastructure    │
+       │  Infrastructure   │
        │-------------------│
-       │ - SQL DbContext    │
-       │ - MongoDbContext   │
-       │ - Repositories     │
+       │ - SQL DbContext   │
+       │ - MongoDbContext  │
+       │ - Repositories    │
        └─────────┬─────────┘
                  │
                  ▼
