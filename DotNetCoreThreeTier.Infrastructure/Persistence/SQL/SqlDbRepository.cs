@@ -1,20 +1,16 @@
 ﻿using DotNetCoreThreeTier.Core.Contracts;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace DotNetCoreThreeTier.Infrastructure.Persistence.SQL
 {
-    public class SqlDbGenericRepository<T> : IRepository<T> where T : class
+    public class SqlDbRepository<T> : IRepository<T> where T : class
     {
         protected readonly SqlDbContext _context;
         private readonly DbSet<T> _dbSet;
 
-        public SqlDbGenericRepository(SqlDbContext context)
+        public SqlDbRepository(SqlDbContext context)
         {
             _context = context;
             _dbSet = _context.Set<T>();
@@ -22,14 +18,15 @@ namespace DotNetCoreThreeTier.Infrastructure.Persistence.SQL
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> predicate)
         {
-            return _dbSet.Where(predicate).ToList();
+            return _dbSet.Where(predicate).AsNoTracking().ToList();
         }
 
         public async Task<T?> GetByIdAsync(int id) =>
-            await _dbSet.FindAsync(id);
+            await _dbSet.AsNoTracking()
+                .FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
 
         public async Task<IEnumerable<T>> GetAllAsync() =>
-            await _dbSet.ToListAsync();
+            await _dbSet.AsNoTracking().ToListAsync();
 
         public async Task AddAsync(T entity)
         {

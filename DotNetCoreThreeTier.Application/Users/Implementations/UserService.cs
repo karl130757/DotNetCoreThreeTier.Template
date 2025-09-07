@@ -15,7 +15,7 @@ namespace DotNetCoreThreeTier.Application.Users.Implementations
         {
             var data = _userRepository.Find(f => f.Email!.ToLower() == user.Email!.ToLower());
 
-            if (!data.Any())
+            if (data.Any())
             {
                 return new ServiceResponse(false, "User already exist!.", null);
             }
