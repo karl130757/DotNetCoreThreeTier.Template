@@ -88,9 +88,9 @@ DotNetCoreThreeTier.Template/
 ```csharp
 var builder = WebApplication.CreateBuilder(args);
 
-// Infrastructure choice (switch here only)
-builder.Services.AddInfrastructure(builder.Configuration); // SQL or MongoDB
-builder.Services.AddApplication();                          // No change needed
+
+builder.Services.AddInfrastructure(builder.Configuration); 
+builder.Services.AddApplication();                          
 
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
